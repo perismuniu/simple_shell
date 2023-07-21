@@ -1,50 +1,51 @@
 #include "shell.h"
-#define BUFFER_SIZE
+
 /**
  * custom_getline - function that reads a line of input from standard input.
+ * @lineptr: pointer to the buffer.
+ * @n: pointer to the variable that will be updated.
  * Return: Number of characters read, or (-1) on error or end of file.
  */
 
-char *custom_getline(void)
+ssize_t custom_getline(char **lineptr, size_t *n)
 {
-	size_t n = BUFFER_SIZE;
-	char *buffer = malloc(sizeof(char) * n);
-	int read_num, position = 0;
-	char *new_buffer;
+	const size_t buffersize = 128;
+	const char delim = '\n';
+	size_t i = 0;
+	char ch, *tmp;
+	size_t bytesread;
 
-	if (!buffer)
-	{	return (NULL); }
+	if (lineptr == NULL || n == NULL)
+	{	return (-1); }
+	if (*lineptr == NULL)
+	{	*n = buffersize;
+		*lineptr = (char *)malloc(*n);
+		if (*lineptr == NULL)
+		{	 return (-1); }
+	}
 	while (1)
-	{	read_num = read(STDIN_FILENO, buffer + position, BUFFER_SIZE - position);
-		if (read_num == -1)
-		{	free(buffer);
-			return (NULL);
-		}
-		if (read_num == 0)
-		{	break; }
-		position += read_num;
-		if (position >= n)
-		{	n *= 2;
-			new_buffer = malloc(sizeof(char) * n);
-			if (new_buffer == NULL)
-			{	free(buffer);
-				return (NULL);
-			}
-			else
-			{	my_strcpy(new_buffer, buffer);
-				free(buffer);
-				buffer = new_buffer;
-			}
-		}
-		if (buffer[position - 1] == '\n')
-		{	buffer[position - 1] == '\0';
+	{
+		bytesread = read(STDIN_FILENO, &ch, sizeof(ch));
+		if (bytesread <= 0)
+		{
+			if (i == 0 && bytesread == 0)
+			{ return (-1); }
 			break;
 		}
+		if (i >= *n - 1)
+		{	*n *= 2;
+			tmp = (char *)malloc(*n);
+			if (tmp == NULL)
+			{	free(*lineptr);
+				return (-1);	}
+			my_strcpy(tmp, *lineptr);
+			free(*lineptr);
+			*lineptr = tmp;
+		}
+		(*lineptr)[i++] = ch;
+		if (ch == delim)
+		{	 break; }
 	}
-	if (position == 0 && buffer != NULL)
-	{	free(buffer);
-		buffer = NULL;
-	}
-	return (buffer);
+	(*lineptr)[i] = '\0';
+	return (i);
 }
-

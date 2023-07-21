@@ -15,7 +15,7 @@ char *my_strtok(char *str, const char *delim)
 
 	if (str != NULL)
 	{	buf = str; }
-	if (buf == NULL || buf == '\0')
+	if (buf == NULL || *buf == '\0')
 	{	return (NULL); }
 	token_start = buf;
 	token_len = 0;

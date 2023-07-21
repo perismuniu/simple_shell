@@ -24,7 +24,7 @@ int path(const char *cmd)
 		argument[1] = "-c";
 		argument[2] = (char *)cmd;
 		argument[3] = NULL;
-		execve("/bin/sh", argv, NULL);
+		execve("/bin/sh", argument, NULL);
 		write(STDERR_FILENO, "execve error\n", 13);
 		exit(EXIT_FAILURE);
 	}

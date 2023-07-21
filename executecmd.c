@@ -10,7 +10,7 @@ void executecmd(const char *cmd)
 	char *val, *token, *var, *directory, *status_str;
 	int status;
 
-	if (my_strcmp(cmd, "exit", 5) == 0)
+	if (my_strncmp(cmd, "exit", 5) == 0)
 	{	status_str = (char *)cmd + 5;
 		status = my_atoi(status_str);
 		exit(status);
@@ -31,7 +31,7 @@ void executecmd(const char *cmd)
 	{	token = my_strtok((char *)cmd + 8, " ");
 		var = token;
 		if (var != NULL)
-		{		unset_env(variable); }
+		{	unset_env(var); }
 		else
 		{		write(STDERR_FILENO, "Invalid unsetenv command\n", 26); }
 	}
@@ -43,8 +43,8 @@ void executecmd(const char *cmd)
 		else
 		{		change_directory(NULL);	}
 	}
-	else if (my_strncmp(command, "alias", 5) == 0)
-	{	alias(cmd + 5); }
+	/*else if (my_strncmp(cmd, "alias", 5) == 0)*/
+	/*{	alias(cmd + 5); }*/
 	else
 	{	path(cmd);	}
 }

@@ -8,7 +8,7 @@
  *  * Return: pointer to the value.
  */
 
-char *my_getenv(const char *name, char **environ)
+char *my_getenv(const char *name)
 {
 	char *currentvar;
 	size_t len;

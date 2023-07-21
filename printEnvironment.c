@@ -5,14 +5,16 @@
  *
  */
 
-void printEnvironment()
+void printEnvironment(void)
 {
-  char **env = environ;
-  while (*env != NULL)
-    {
-      size_t len = strlen(*env);
-      write(STDOUT_FILENO, *env, len);
-      write(STDOUT_FILENO, "\n", 1);
-      env++;
-    }
+	char **env = environ;
+	size_t len;
+
+	while (*env != NULL)
+	{
+		len = strlen(*env);
+		write(STDOUT_FILENO, *env, len);
+		write(STDOUT_FILENO, "\n", 1);
+		env++;
+	}
 }
