@@ -4,8 +4,7 @@
  * my_getenv - function that searches the environment
  * list to find the environment
  * @name: is a string representing the name of the environment.
- * @environ: array of character pointers to the environment strings.
- *  * Return: pointer to the value.
+ * Return: pointer to the value.
  */
 
 char *my_getenv(const char *name)

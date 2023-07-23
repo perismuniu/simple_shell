@@ -32,5 +32,6 @@ void printEnvironment(void);
 void set_env(const char *var, const char *val);
 void unset_env(const char *var);
 extern char **environ;
+void free_memory(char *lineptr);
 
 #endif

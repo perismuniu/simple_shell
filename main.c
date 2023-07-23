@@ -48,5 +48,6 @@ int main(void)
 		{	break; }
 	}
 	free(input);
+	free_memory(input);
 	return (0);
 }
