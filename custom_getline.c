@@ -12,8 +12,8 @@ ssize_t custom_getline(char **lineptr, size_t *n)
 	const size_t buffersize = 128;
 	const char delim = '\n';
 	size_t i = 0;
-	char ch, *tmp;
 	size_t bytesread;
+	char ch, *tmp;
 
 	if (lineptr == NULL || n == NULL)
 	{	return (-1); }
@@ -29,15 +29,19 @@ ssize_t custom_getline(char **lineptr, size_t *n)
 		if (bytesread <= 0)
 		{
 			if (i == 0 && bytesread == 0)
-			{ return (-1); }
+			{
+				free(*lineptr);
+				return (-1); }
 			break;
 		}
 		if (i >= *n - 1)
 		{	*n *= 2;
+			*lineptr = (char *)malloc(*n);
 			tmp = (char *)malloc(*n);
 			if (tmp == NULL)
 			{	free(*lineptr);
-				return (-1);	}
+				return (-1);	
+			}
 			my_strcpy(tmp, *lineptr);
 			free(*lineptr);
 			*lineptr = tmp;

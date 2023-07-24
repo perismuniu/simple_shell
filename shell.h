@@ -9,6 +9,7 @@
 #include <sys/wait.h>
 #include <stdbool.h>
 #include <stdarg.h>
+#include <malloc.h>
 
 void executecmd(const char *cmd);
 ssize_t custom_getline(char **lineptr, size_t *n);
@@ -33,5 +34,6 @@ void set_env(const char *var, const char *val);
 void unset_env(const char *var);
 extern char **environ;
 void free_memory(char *lineptr);
+void *my_realloc(void *ptr, size_t size);
 
 #endif

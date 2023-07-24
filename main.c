@@ -18,15 +18,14 @@ int main(void)
 	{	bytesread = custom_getline(&input, &inputsize);
 		if (bytesread == -1)
 		{	perror("custom_getline");
-			return (1);
-		}
+			return (1); }
 		input[bytesread - 1] = '\0';
 		token = my_strtok(input, ";");
 		while (token != NULL)
 		{	executecmd(token);
-			token = my_strtok(NULL, ";");
-		}
+			token = my_strtok(NULL, ";"); }
 		free(input);
+		free(token);
 		return (0);
 	}
 	while (1)
@@ -48,6 +47,6 @@ int main(void)
 		{	break; }
 	}
 	free(input);
-	free_memory(input);
+	free(token);
 	return (0);
 }

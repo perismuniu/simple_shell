@@ -17,24 +17,22 @@ int path(const char *cmd)
 	pid = fork();
 	if (pid == -1)
 	{	write(STDERR_FILENO, "fork error\n", 12);
-		return (-1);
-	}
+		return (-1); }
 	else if (pid == 0)
 	{	argument[0] = "/bin/sh";
 		argument[1] = "-c";
 		argument[2] = (char *)cmd;
 		argument[3] = NULL;
 		execve("/bin/sh", argument, NULL);
-		write(STDERR_FILENO, "execve error\n", 13);
-		exit(EXIT_FAILURE);
-	}
+		len = my_snprintf(message, sizeof(message), "./hsh: %s: not found\n", cmd);
+		write(STDERR_FILENO, message, len);
+		exit(EXIT_FAILURE); }
 	else
 	{
 		if (waitpid(pid, &status, 0) == -1)
 		{
-			write(STDERR_FILENO, "waitpid error\n", 14);
-			return (-1);
-		}
+			write(STDERR_FILENO, "./hsh: Error waiting for child process\n", 38);
+			return (-1); }
 		if (WIFEXITED(status))
 		{	return (WEXITSTATUS(status)); }
 		else if (WIFSIGNALED(status))
