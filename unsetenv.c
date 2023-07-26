@@ -3,6 +3,7 @@
 /**
  * unset_env - function that unsets an environment variable.
  * @var: Pointer to the name of the environment variable.
+ * Return: (0) on success and (-1) if there is an error
  */
 
 int unset_env(const char *var)
