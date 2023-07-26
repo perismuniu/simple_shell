@@ -11,6 +11,7 @@
 #include <stdarg.h>
 #include <malloc.h>
 #include <signal.h>
+#include <errno.h>
 
 void executecmd(const char *cmd);
 /*ssize_t custom_getline(char **lineptr, size_t *n);*/
@@ -38,5 +39,6 @@ void *my_realloc(void *ptr, size_t size);
 void exit_shell(void);
 void signal_handler(int signum);
 char *my_strdup(const char *str);
+void change_directory(const char *path);
 
 #endif

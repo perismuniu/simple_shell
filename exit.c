@@ -7,6 +7,5 @@
 void exit_shell(void)
 {
 	write(STDOUT_FILENO, "Shell exited...\n", 16);
-
 	exit(0);
 }

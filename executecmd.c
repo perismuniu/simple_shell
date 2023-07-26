@@ -7,7 +7,7 @@
 
 void executecmd(const char *cmd)
 {
-	char *val, *token, *var, *status_str;
+	char *val, *token, *var, *directory, *status_str;
 	int status;
 	int overwrite = 0;
 
@@ -37,13 +37,13 @@ void executecmd(const char *cmd)
 		{	unset_env(var); }
 		else
 		{		write(STDERR_FILENO, "Invalid unsetenv command\n", 26); } }
-	/*else if (my_strncmp(cmd, cd, 2) == 0)*/
-	/*{	token = my_strtok((char *)cmd + 2, " ");*/
-	/*	directory = token;*/
-	/*	if (directory != NULL)*/
-	/*	{		change_directory(directory); }*/
-	/*	else*/
-	/*	{		change_directory(NULL);	} }*/
+	else if (my_strncmp(cmd, "cd", 2) == 0)
+	{	token = my_strtok((char *)cmd + 2, " ");
+		directory = token;
+		if (directory != NULL)
+		{	change_directory(directory); }
+		else
+		{      	change_directory(NULL); } }
 	else
 	{	path(cmd);	}
 }
