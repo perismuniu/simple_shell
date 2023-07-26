@@ -36,8 +36,7 @@ void executecmd(const char *cmd)
 		if (var != NULL)
 		{	unset_env(var); }
 		else
-		{		write(STDERR_FILENO, "Invalid unsetenv command\n", 26); }
-	}
+		{		write(STDERR_FILENO, "Invalid unsetenv command\n", 26); } }
 	/*else if (my_strncmp(cmd, cd, 2) == 0)*/
 	/*{	token = my_strtok((char *)cmd + 2, " ");*/
 	/*	directory = token;*/

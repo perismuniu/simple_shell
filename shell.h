@@ -37,7 +37,6 @@ void free_memory(char *lineptr);
 void *my_realloc(void *ptr, size_t size);
 void exit_shell(void);
 void signal_handler(int signum);
-int my_putenv(const char* name_value);
 char *my_strdup(const char *str);
 
 #endif
