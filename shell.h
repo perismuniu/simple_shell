@@ -12,7 +12,7 @@
 #include <malloc.h>
 
 void executecmd(const char *cmd);
-ssize_t custom_getline(char **lineptr, size_t *n);
+/*ssize_t custom_getline(char **lineptr, size_t *n);*/
 char *my_strtok(char *str, const char *delim);
 int path(const char *cmd);
 int my_strcmp(const char *s1, const char *s2);

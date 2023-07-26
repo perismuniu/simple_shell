@@ -23,7 +23,7 @@ int path(const char *cmd)
 		argument[1] = "-c";
 		argument[2] = (char *)cmd;
 		argument[3] = NULL;
-		execve("/bin/sh", argument, NULL);
+		execve("/bin/sh", argument, environ);
 		len = my_snprintf(message, sizeof(message), "./hsh: %s: not found\n", cmd);
 		write(STDERR_FILENO, message, len);
 		exit(EXIT_FAILURE); }

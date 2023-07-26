@@ -15,9 +15,9 @@ int main(void)
 	char *token;
 
 	if (!isatty(fileno(stdin)))
-	{	bytesread = custom_getline(&input, &inputsize);
+	{	bytesread = getline(&input, &inputsize, stdin);
 		if (bytesread == -1)
-		{	perror("custom_getline");
+		{	perror("getline");
 			return (1); }
 		input[bytesread - 1] = '\0';
 		token = my_strtok(input, ";");
@@ -30,9 +30,9 @@ int main(void)
 	}
 	while (1)
 	{	write(STDOUT_FILENO, "$ ", 2);
-		bytesread = custom_getline(&input, &inputsize);
+		bytesread = getline(&input, &inputsize, stdin);
 		if (bytesread == -1)
-		{	perror("custom_getline");
+		{	perror("getline");
 			break;
 		}
 		if (bytesread == 0)
