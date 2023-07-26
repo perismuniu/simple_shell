@@ -58,8 +58,7 @@ int main(void)
 		}
 		if (my_strcmp(input, "exit") == 0)
 		{	free(input);
-			exit_shell();
-		}
+			exit_shell(); }
 	}
 	free(input);
 	return (0);
