@@ -1,5 +1,18 @@
 #include "shell.h"
 
+
+/**
+ * signal_handler - function that handles (ctrl + c) single.
+ * @signum: the recieved signal number.
+ */
+
+void signal_handler(int signum)
+{
+	write(STDOUT_FILENO, "\n$ ", 3);
+	my_printf("Signal received: %d\n", signum);
+	fflush(stdout);
+}
+
 /**
  * main - Entry point of the program.
  * This program  supports both interactive and non-interactive modes
@@ -14,6 +27,7 @@ int main(void)
 	ssize_t bytesread;
 	char *token;
 
+	signal(SIGINT, signal_handler);
 	if (!isatty(fileno(stdin)))
 	{	bytesread = getline(&input, &inputsize, stdin);
 		if (bytesread == -1)

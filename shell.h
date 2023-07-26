@@ -10,6 +10,7 @@
 #include <stdbool.h>
 #include <stdarg.h>
 #include <malloc.h>
+#include <signal.h>
 
 void executecmd(const char *cmd);
 /*ssize_t custom_getline(char **lineptr, size_t *n);*/
@@ -21,7 +22,6 @@ char *my_getenv(const char *name);
 bool logicalAnd(bool a, bool b);
 bool logicalOr(bool a, bool b);
 int my_printf(const char *format, ...);
-int my_snprintf(char *str, size_t size, const char *format, ...);
 int my_atoi(const char *str);
 size_t my_strlen(const char *s);
 bool logicalAnd(bool a, bool b);
@@ -30,10 +30,13 @@ bool logicalOr(bool a, bool b);
 char *my_strchr(const char *s, int c);
 char *my_strcpy(char *des, const char *src);
 void printEnvironment(void);
+int my_snprintf(char *str, size_t size, const char *format, ...);
 void set_env(const char *var, const char *val);
 void unset_env(const char *var);
 extern char **environ;
 void free_memory(char *lineptr);
 void *my_realloc(void *ptr, size_t size);
+void exit_shell(void);
+void signal_handler(int signum);
 
 #endif

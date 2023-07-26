@@ -13,7 +13,7 @@ void executecmd(const char *cmd)
 	if (my_strncmp(cmd, "exit", 4) == 0)
 	{	status_str = (char *)cmd + 4;
 		if (*status_str == '\0')
-		{	exit(EXIT_SUCCESS); }
+		{	exit_shell(); }
 		else
 		{	status = my_atoi(status_str);
 			exit(status); }
