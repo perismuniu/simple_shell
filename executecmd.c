@@ -43,7 +43,6 @@ void executecmd(const char *cmd)
 		if (directory != NULL)
 		{	change_directory(directory); }
 		else
-		{      	change_directory(NULL); } }
+		{	change_directory(NULL); } }
 	else
-	{	path(cmd);	}
-}
+	{	path(cmd);	} }

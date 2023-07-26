@@ -6,17 +6,12 @@
  * @signum: the recieved signal number.
  */
 
-volatile sig_atomic_t received_signal = 0;
 
 void signal_handler(int signum)
 {
-	if (signum == SIGINT)
-	{
-		write(STDOUT_FILENO, "\n$ ", 3);
-		my_printf("Signal received: %d\n", signum);
-		fflush(stdout);
-		received_signal = 1;
-	}
+	write(STDOUT_FILENO, "\n$ ", 3);
+	my_printf("Signal received: %d\n", signum);
+	fflush(stdout);
 }
 
 /**
