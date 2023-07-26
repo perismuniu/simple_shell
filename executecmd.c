@@ -14,7 +14,7 @@ void executecmd(const char *cmd)
 	if (my_strncmp(cmd, "exit", 4) == 0)
 	{	status_str = (char *)cmd + 4;
 		if (*status_str == '\0')
-		{	exit_shell(); }
+		{	exit_shell(0); }
 		else
 		{	status = my_atoi(status_str);
 			exit(status); }
