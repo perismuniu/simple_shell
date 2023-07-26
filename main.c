@@ -25,7 +25,6 @@ int main(void)
 		{	executecmd(token);
 			token = my_strtok(NULL, ";"); }
 		free(input);
-		free(token);
 		return (0);
 	}
 	while (1)
@@ -47,6 +46,5 @@ int main(void)
 		{	break; }
 	}
 	free(input);
-	free(token);
 	return (0);
 }
