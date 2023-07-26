@@ -57,7 +57,9 @@ int main(void)
 			token = my_strtok(NULL, ";");
 		}
 		if (my_strcmp(input, "exit") == 0)
-		{	break; }
+		{	free(input);
+			exit_shell();
+		}
 	}
 	free(input);
 	return (0);
